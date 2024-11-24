@@ -43,3 +43,4 @@ bin/
 
 *~
 *.java~
+src/main/resources/auth.env

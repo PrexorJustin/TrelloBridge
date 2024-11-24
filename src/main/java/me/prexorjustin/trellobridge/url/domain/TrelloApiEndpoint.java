@@ -1,6 +1,6 @@
 package me.prexorjustin.trellobridge.url.domain;
 
-public interface ITrelloDomain {
+public interface TrelloApiEndpoint {
 
     String getUrl();
 

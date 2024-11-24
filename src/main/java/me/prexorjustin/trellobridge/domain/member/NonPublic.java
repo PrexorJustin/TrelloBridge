@@ -2,11 +2,12 @@ package me.prexorjustin.trellobridge.domain.member;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import lombok.Getter;
 
-@Data
+@Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class NonPublic {
+class NonPublic {
 
-    public String fullName, initials, avatarUrl, avatarHash;
+    private String fullName, initials, avatarUrl, avatarHash;
 
 }

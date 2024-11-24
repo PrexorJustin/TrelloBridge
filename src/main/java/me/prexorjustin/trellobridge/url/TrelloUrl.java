@@ -2,7 +2,11 @@ package me.prexorjustin.trellobridge.url;
 
 import lombok.AccessLevel;
 import lombok.Getter;
-import me.prexorjustin.trellobridge.url.domain.ITrelloDomain;
+import me.prexorjustin.trellobridge.url.domain.TrelloApiEndpoint;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringJoiner;
 
 //TODO: Add possibility to add arguments // parameters
 @Getter
@@ -13,31 +17,51 @@ public class TrelloUrl {
     @Getter(AccessLevel.NONE)
     private static final String AUTH_KEY = "key={applicationKey}&token={userToken}";
 
-    private final ITrelloDomain baseUrl;
+    private final TrelloApiEndpoint baseUrl;
+    private final List<DomainArgument> arguments;
 
     private TrelloUrl(TrelloUrlBuilder builder) {
         this.baseUrl = builder.baseUrl;
+        this.arguments = builder.arguments;
     }
 
-    public static TrelloUrlBuilder builder() {
-        return new TrelloUrlBuilder();
+    public static TrelloUrlBuilder builder(TrelloApiEndpoint baseUrl) {
+        return new TrelloUrlBuilder(baseUrl);
     }
 
     public static class TrelloUrlBuilder {
 
-        private ITrelloDomain baseUrl;
+        private final TrelloApiEndpoint baseUrl;
+        private final List<DomainArgument> arguments;
 
-        private TrelloUrlBuilder() {
-
+        private TrelloUrlBuilder(TrelloApiEndpoint baseUrl) {
+            this.baseUrl = baseUrl;
+            this.arguments = new ArrayList<>();
         }
 
-        public TrelloUrlBuilder baseUrl(ITrelloDomain baseUrl) {
-            this.baseUrl = baseUrl;
+        public TrelloUrlBuilder withArguments(DomainArgument... arguments) {
+            this.arguments.addAll(List.of(arguments));
+            return this;
+        }
+
+        public TrelloUrlBuilder withArgument(DomainArgument argument) {
+            this.arguments.add(argument);
             return this;
         }
 
         public String build() {
-            return API_URL + this.baseUrl.getUrl() + AUTH_KEY;
+            StringBuilder builder = new StringBuilder(API_URL)
+                    .append(this.baseUrl.getUrl())
+                    .append(AUTH_KEY);
+
+            // If there are arguments, add them
+            if (!this.arguments.isEmpty()) {
+                StringJoiner joiner = new StringJoiner("&");
+                this.arguments.forEach(argument -> joiner.add(argument.key() + "=" + argument.value()));
+                builder.append("&").append(joiner);
+            }
+
+            return builder.toString();
         }
     }
 }

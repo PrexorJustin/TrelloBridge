@@ -1,12 +1,13 @@
-package me.prexorjustin.trellobridge.domain.member;
+package me.prexorjustin.trellobridge.utils.limit;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
-class MessagesDismissed {
+public class LimitData {
 
-    private String name, count, lastDismissed, _id;
+    private String status;
+    private Integer disableAt, warnAt;
 
 }

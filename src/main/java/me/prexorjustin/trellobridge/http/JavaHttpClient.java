@@ -24,11 +24,42 @@ public class JavaHttpClient implements IHttpClient {
     }
 
     public <T> T get(String url, Class<T> clazz, String... parameters) {
-        HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create(Utils.injectParameter(url, parameters))).build();
-
-        System.out.println("url = " + request.uri());
-
         try {
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(Utils.injectParameter(url, parameters)))
+                    .header("Accept", "application/json")
+                    .GET()
+                    .build();
+
+            return handleResponse(this.httpClient.send(request, HttpResponse.BodyHandlers.ofString()), clazz);
+        } catch (IOException | InterruptedException exception) {
+            throw new RuntimeException(exception);
+        }
+    }
+
+    @Override
+    public <T> T put(String url, Object body, Class<T> clazz, String... parameters) {
+        try {
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(Utils.injectParameter(url, parameters)))
+                    .header("Content-Type", "application/json")
+                    .PUT(HttpRequest.BodyPublishers.ofString(this.objectMapper.writeValueAsString(body)))
+                    .build();
+
+            return handleResponse(this.httpClient.send(request, HttpResponse.BodyHandlers.ofString()), clazz);
+        } catch (IOException | InterruptedException exception) {
+            throw new RuntimeException(exception);
+        }
+    }
+
+    @Override
+    public <T> T delete(String url, Class<T> clazz, String... parameters) {
+        try {
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(Utils.injectParameter(url, parameters)))
+                    .DELETE()
+                    .build();
+
             return handleResponse(this.httpClient.send(request, HttpResponse.BodyHandlers.ofString()), clazz);
         } catch (IOException | InterruptedException exception) {
             throw new RuntimeException(exception);
@@ -43,10 +74,10 @@ public class JavaHttpClient implements IHttpClient {
         } else if (response.statusCode() == 404) {
             throw new NotFoundException("API request error: Endpoint not found. " + response.uri());
         }
+
         try {
             return this.objectMapper.readValue(response.body(), clazz);
         } catch (JsonProcessingException exception) {
-            exception.printStackTrace();
             throw new DeserializationException("Error parsing JSON: Unexpected token or structure. " + response.body());
         }
     }

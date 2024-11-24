@@ -27,6 +27,8 @@ public class Utils {
         }
 
         matcher.appendTail(stringBuilder);
-        return stringBuilder.toString();
+        String string = stringBuilder.toString();
+        System.out.println("URL: " + string);
+        return string;
     }
 }
