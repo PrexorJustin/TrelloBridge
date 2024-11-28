@@ -2,7 +2,7 @@ package me.prexorjustin.trellobridge.url;
 
 import lombok.AccessLevel;
 import lombok.Getter;
-import me.prexorjustin.trellobridge.url.domain.TrelloApiEndpoint;
+import me.prexorjustin.trellobridge.url.domain.TrelloAPIEndpoint;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ public class TrelloUrl {
     @Getter(AccessLevel.NONE)
     private static final String AUTH_KEY = "key={applicationKey}&token={userToken}";
 
-    private final TrelloApiEndpoint baseUrl;
+    private final TrelloAPIEndpoint baseUrl;
     private final List<DomainArgument> arguments;
 
     private TrelloUrl(TrelloUrlBuilder builder) {
@@ -25,16 +25,16 @@ public class TrelloUrl {
         this.arguments = builder.arguments;
     }
 
-    public static TrelloUrlBuilder builder(TrelloApiEndpoint baseUrl) {
+    public static TrelloUrlBuilder builder(TrelloAPIEndpoint baseUrl) {
         return new TrelloUrlBuilder(baseUrl);
     }
 
     public static class TrelloUrlBuilder {
 
-        private final TrelloApiEndpoint baseUrl;
+        private final TrelloAPIEndpoint baseUrl;
         private final List<DomainArgument> arguments;
 
-        private TrelloUrlBuilder(TrelloApiEndpoint baseUrl) {
+        private TrelloUrlBuilder(TrelloAPIEndpoint baseUrl) {
             this.baseUrl = baseUrl;
             this.arguments = new ArrayList<>();
         }

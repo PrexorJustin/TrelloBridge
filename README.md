@@ -84,24 +84,30 @@ A special thanks to the creators for their excellent work and the inspiration th
   <thead>
     <tr style="background-color: #2980b9; color: white; font-weight: bold; text-align: left;">
       <th style="padding: 15px;">API Domain</th>
-      <th style="padding: 15px; text-align: center;">Implemented (✔/🚧)</th>
+      <th style="padding: 15px; text-align: center;">Implemented (✔/🚧/⌛)</th>
       <th style="padding: 15px;">Description</th>
       <th style="padding: 15px;">Notes</th>
     </tr>
   </thead>
   <tbody>
+    <tr style="background-color: #34495e; border-bottom: 1px solid #ddd; color: white;">
+      <td style="padding: 12px;">Boards</td>
+      <td style="padding: 12px; text-align: center; color: green;">✔</td>
+      <td style="padding: 12px;">API calls to create, update, and manage boards on Trello.</td>
+      <td style="padding: 12px;">Fully implemented. <br> Pending documentation.</td>
+    </tr>
     <tr style="background-color: #2c3e50; border-bottom: 1px solid #ddd; color: white;">
-      <td style="padding: 12px;">Members</td>
+      <td style="padding: 12px;">Actions</td>
       <td style="padding: 12px; text-align: center;">🚧</td>
+      <td style="padding: 12px;">API calls to manage actions within boards, cards and lists.</td>
+      <td style="padding: 12px;">Basic layout finished. working on implementing API routes</td>
+    </tr>
+    <tr style="background-color: #34495e; border-bottom: 1px solid #ddd; color: white;">
+      <td style="padding: 12px;">Members</td>
+      <td style="padding: 12px; text-align: center;">⌛</td>
       <td style="padding: 12px;">API calls to manage members within boards and cards.</td>
       <td style="padding: 12px;">Basic Member functionality finished.</td>
     </tr>
-    <tr style="background-color: #34495e; border-bottom: 1px solid #ddd; color: white;">
-      <td style="padding: 12px;">Boards</td>
-      <td style="padding: 12px; text-align: center;">🚧</td>
-      <td style="padding: 12px;">API calls to create, update, and manage boards on Trello.</td>
-      <td style="padding: 12px;">Started implementation.</td>
-</tr>
     <tr style="background-color: #2c3e50; border-bottom: 1px solid #ddd; color: white;">
       <td style="padding: 12px;">Cards</td>
       <td style="padding: 12px; text-align: center;"><span style="color: grey;">⌛</span></td>

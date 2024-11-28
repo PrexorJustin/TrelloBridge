@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum MemberApiEndpoint implements TrelloApiEndpoint {
+public enum MemberAPIEndpoint implements TrelloAPIEndpoint {
 
     GET_MEMBER("/members/{id}?"),
     UPDATE_MEMBER("/members/{id}?"),
