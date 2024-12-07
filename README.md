@@ -104,25 +104,25 @@ A special thanks to the creators for their excellent work and the inspiration th
     </tr>
     <tr style="background-color: #34495e; border-bottom: 1px solid #ddd; color: white;">
       <td style="padding: 12px;">Members</td>
-      <td style="padding: 12px; text-align: center;">⌛</td>
+      <td style="padding: 12px; text-align: center;">🚧</td>
       <td style="padding: 12px;">API calls to manage members within boards and cards.</td>
       <td style="padding: 12px;">Basic Member functionality finished.</td>
     </tr>
     <tr style="background-color: #2c3e50; border-bottom: 1px solid #ddd; color: white;">
       <td style="padding: 12px;">Cards</td>
-      <td style="padding: 12px; text-align: center;"><span style="color: grey;">⌛</span></td>
+      <td style="padding: 12px; text-align: center;"><span style="color: grey;">🚧</span></td>
       <td style="padding: 12px;">API calls to create, manage, and update cards.</td>
       <td style="padding: 12px;">Not started yet. Pending initial planning and design.</td>
     </tr>
     <tr style="background-color: #34495e; border-bottom: 1px solid #ddd; color: white;">
       <td style="padding: 12px;">Lists</td>
-      <td style="padding: 12px; text-align: center;"><span style="color: grey;">⌛</span></td>
+      <td style="padding: 12px; text-align: center;"><span style="color: grey;">🚧</span></td>
       <td style="padding: 12px;">API calls to manage lists within boards.</td>
       <td style="padding: 12px;">Not started yet. Pending initial planning and design.</td>
     </tr>
     <tr style="background-color: #2c3e50; border-bottom: 1px solid #ddd; color: white;">
       <td style="padding: 12px;">Checklists</td>
-      <td style="padding: 12px; text-align: center;"><span style="color: grey;">⌛</span></td>
+      <td style="padding: 12px; text-align: center;"><span style="color: grey;">🚧</span></td>
       <td style="padding: 12px;">API calls for creating and managing checklists within cards.</td>
       <td style="padding: 12px;">Not started yet. Pending initial planning and design.</td>
     </tr>
@@ -134,7 +134,7 @@ A special thanks to the creators for their excellent work and the inspiration th
     </tr>
     <tr style="background-color: #2c3e50; border-bottom: 1px solid #ddd; color: white;">
       <td style="padding: 12px;">Labels</td>
-      <td style="padding: 12px; text-align: center;"><span style="color: grey;">⌛</span></td>
+      <td style="padding: 12px; text-align: center;"><span style="color: grey;">🚧</span></td>
       <td style="padding: 12px;">API calls to manage labels on cards and boards.</td>
       <td style="padding: 12px;">Not started yet. Pending initial planning and design.</td>
     </tr>
