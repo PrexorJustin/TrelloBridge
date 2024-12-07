@@ -2,6 +2,7 @@ package me.prexorjustin.trellobridge.domain.action;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
+import me.prexorjustin.trellobridge.domain.TrelloModel;
 import me.prexorjustin.trellobridge.domain.board.BoardShort;
 import me.prexorjustin.trellobridge.domain.card.CardShort;
 import me.prexorjustin.trellobridge.domain.list.TrelloListShort;
@@ -12,7 +13,7 @@ import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
-public class Action {
+public class Action extends TrelloModel {
 
     private String id, idMemberCreator, type;
     private Date date;

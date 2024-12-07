@@ -29,7 +29,7 @@ public interface ITrelloBridge {
 
     Action getAction(String actionId);
 
-    boolean deleteAction(String actionId);
+    void deleteAction(String actionId);
 
     <T> T getActionField(String actionId, ActionFields actionField);
 

@@ -13,7 +13,7 @@ public enum ActionAPIEndpoint implements TrelloAPIEndpoint {
     GET_ACTION_FIELD("/actions/{id}/{field}"),
 
     // Related resources
-    GET_ACTION_BOARDS("/actions/{id}/board"),
+    GET_ACTION_BOARD("/actions/{id}/board"),
     GET_ACTION_CARD("/actions/{id}/card"),
     GET_ACTION_LIST("/actions/{id}/list"),
     GET_ACTION_MEMBER("/actions/{id}/member"),

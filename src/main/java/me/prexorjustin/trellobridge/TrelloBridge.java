@@ -4,6 +4,7 @@ import com.google.gson.GsonBuilder;
 import lombok.Getter;
 import me.prexorjustin.trellobridge.domain.TrelloModel;
 import me.prexorjustin.trellobridge.domain.action.Action;
+import me.prexorjustin.trellobridge.domain.action.ActionFields;
 import me.prexorjustin.trellobridge.domain.board.Board;
 import me.prexorjustin.trellobridge.domain.board.BoardStar;
 import me.prexorjustin.trellobridge.domain.board.mypref.MyPrefs;
@@ -18,15 +19,13 @@ import me.prexorjustin.trellobridge.domain.member.Member;
 import me.prexorjustin.trellobridge.domain.member.MemberShort;
 import me.prexorjustin.trellobridge.domain.membership.Membership;
 import me.prexorjustin.trellobridge.domain.membership.MembershipType;
+import me.prexorjustin.trellobridge.domain.organization.Organization;
 import me.prexorjustin.trellobridge.domain.plugin.Plugin;
 import me.prexorjustin.trellobridge.http.IHttpClient;
 import me.prexorjustin.trellobridge.http.JavaHttpClient;
 import me.prexorjustin.trellobridge.url.DomainArgument;
 import me.prexorjustin.trellobridge.url.TrelloUrl;
-import me.prexorjustin.trellobridge.url.domain.BoardAPIEndpoint;
-import me.prexorjustin.trellobridge.url.domain.CardAPIEndpoint;
-import me.prexorjustin.trellobridge.url.domain.ListAPIEndpoint;
-import me.prexorjustin.trellobridge.url.domain.MemberAPIEndpoint;
+import me.prexorjustin.trellobridge.url.domain.*;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -75,6 +74,73 @@ public class TrelloBridge implements ITrelloBridge {
             throw new RuntimeException(e);
         }
     }
+
+    //region ACTION
+
+    @Override
+    public Action getAction(String actionId) {
+        Action action = get(TrelloUrl.builder(ActionAPIEndpoint.GET_ACTION).build(), Action.class, actionId);
+        action.setTrelloBridge(this);
+        return action;
+    }
+
+    @Override
+    public void deleteAction(String actionId) {
+        delete(TrelloUrl.builder(ActionAPIEndpoint.DELETE_ACTION).build(), Action.class, actionId);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> T getActionField(String actionId, ActionFields actionField) {
+        return (T) get(TrelloUrl.builder(ActionAPIEndpoint.GET_ACTION_FIELD).build(), actionField.getResponseClass(), actionId, actionField.getFieldName());
+    }
+
+    @Override
+    public Board getBoardForAction(String actionId) {
+        Board board = get(TrelloUrl.builder(ActionAPIEndpoint.GET_ACTION_BOARD).build(), Board.class, actionId);
+        board.setTrelloBridge(this);
+        return board;
+    }
+
+    @Override
+    public Card getCardForAction(String actionId) {
+        Card card = get(TrelloUrl.builder(ActionAPIEndpoint.GET_ACTION_CARD).build(), Card.class, actionId);
+        card.setTrelloBridge(this);
+        return card;
+    }
+
+    @Override
+    public TrelloList getListForAction(String actionId) {
+        TrelloList trelloList = get(TrelloUrl.builder(ActionAPIEndpoint.GET_ACTION_LIST).build(), TrelloList.class, actionId);
+        trelloList.setTrelloBridge(this);
+        return trelloList;
+    }
+
+    @Override
+    public Member getMemberForAction(String actionId) {
+        Member member = get(TrelloUrl.builder(ActionAPIEndpoint.GET_ACTION_MEMBER).build(), Member.class, actionId);
+        member.setTrelloBridge(this);
+        return member;
+    }
+
+    @Override
+    public Member getMemberCreatorForAction(String actionId) {
+        return get(TrelloUrl.builder(ActionAPIEndpoint.GET_ACTION_CREATOR).build(), Member.class, actionId);
+    }
+
+    @Override
+    public Organization getOrganizationForAction(String actionId) {
+        return get(TrelloUrl.builder(ActionAPIEndpoint.GET_ACTION_ORGANIZATION).build(), Organization.class, actionId);
+    }
+
+    @Override
+    public Action updateActionComment(String actionId, String comment) {
+        Action action = putWithoutBody(TrelloUrl.builder(ActionAPIEndpoint.UPDATE_ACTION_COMMENT).build(), Action.class, actionId, comment);
+        action.setTrelloBridge(this);
+        return action;
+    }
+
+    //endregion
 
     //region MEMBER
     // ---- MEMBER ---- //
